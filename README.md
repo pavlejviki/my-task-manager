@@ -12,7 +12,7 @@ Use the following user to log in and check the functionality of the website:
 login: tester
 password: test12345
 ```
-
+Please note, as a test user you can't execute delete operations, only admin users have this permission.
 
 ## Features
 
