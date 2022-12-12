@@ -19,7 +19,7 @@
                 <h5 class="ps-3 mb-0">Task list</h5>
               </div>
               <div class="col-6 text-end">
-                <a class="btn btn-outline-primary border-0 mb-0" href="{% url 'home:worker-create' %}">
+                <a class="btn btn-outline-primary mb-0" href="{% url 'home:worker-create' %}">
                   <i class="fas fa-plus"></i> Add Task
                 </a>
               </div>
@@ -27,7 +27,7 @@
                 <form action="" method="get" class="d-flex align-items-center flex-nowrap ps-3">
                   {% csrf_token %}
                   {{ search_form|crispy }}
-                  <button class="btn btn-outline-primary  align-items-center" type="submit">
+                  <button class="btn btn-outline-primary border-0 align-items-center p-0 ms-2" type="submit">
                     <i class="fas fa-search" aria-hidden="true"></i>
                   </button>
                 </form>

@@ -15,10 +15,10 @@
           <div class="card-header ps-0 pe-0">
             <div class="row">
               <div class="col-6 d-flex align-items-center">
-                <h5 class="ps-3 mb-0">Worker list</h5>
+                <h5 class="ps-4 mb-0">Worker list</h5>
               </div>
               <div class="col-6 text-end">
-                <a class="btn btn-outline-primary border-0 mb-0" href="{% url 'home:worker-create' %}">
+                <a class="btn btn-outline-primary mb-0" href="{% url 'home:worker-create' %}">
                   <i class="fas fa-plus"></i> Add Worker
                 </a>
               </div>
@@ -29,22 +29,25 @@
               {% if worker_list %}
                 <table class="table table-hover align-items-center mb-0">
                 <colgroup>
+                {% if not user.is_staff %}
                   <col style="width: 30%"/>
-                  <col style="width: 20%"/>
-                  <col style="width: 30%"/>
-                  {% if not user.is_staff %}
+                  <col style="width: 25%"/>
+                  <col style="width: 25%"/>
                     <col style="width: 20%"/>
                   {% else %}
-                    <col style="width: 8%"/>
-                    <col style="width: 15%"/>
+                    <col style="width: 25%"/>
+                  <col style="width: 20%"/>
+                  <col style="width: 20%"/>
+                    <col style="width: 20%"/>
+                  <col style="width: 15%"/>
                   {% endif %}
                 </colgroup>
                 <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-4">
                     Worker
                   </th>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder  opacity-7">
+                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder  opacity-7">
                     Position
                   </th>
                   <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
@@ -63,7 +66,7 @@
                 <tbody>
                 {% for worker in worker_list %}
                   <tr>
-                    <td>
+                    <td class ="ps-4">
                       <div class="d-flex px-2 py-1">
                         <div>
                           {% if  worker.profile_image %}
@@ -82,13 +85,13 @@
                         </div>
                       </div>
                     </td>
-                    <td class="align-middle text-sm">
+                    <td class="align-middle text-center text-sm">
                       <span class="mb-0 text-sm">{{ worker.position }}</span>
                     </td>
                     <td class="align-middle text-center text-sm">
                       <span class="badge badge-sm bg-gradient-primary">{{ worker.tasks_assigned_to }}</span>
                     </td>
-                    <td class="align-middle text-center ps-5 pe-5">
+                    <td class="align-middle text-center pe-4">
                       <span class="me-2 text-xs font-weight-bold">{{ worker.progress }}%</span>
                       <div class="progress">
                         {% if worker.progress < 50 %}
