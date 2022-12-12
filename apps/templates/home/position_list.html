@@ -12,15 +12,18 @@
     <div class="row my-4">
       <div class="col-12">
         <div class="card">
-          <div class="card-header pb-0">
+          <div class="card-header ps-0 pe-0 pb-0">
             <div class="row">
-              <div class="col-lg-6 col-7">
-                <h5>Position list
-                  <a href="{% url 'home:position-create' %}">
-                    +
-                  </a>
-                </h5>
+              <div class="col-6 d-flex align-items-center">
+                <h5 class="ps-3 mb-0">Position list</h5>
               </div>
+              <div class="col-6 text-end">
+                <a class="btn btn-outline-primary border-0 mb-0" href="{% url 'home:worker-create' %}">
+                  <i class="fas fa-plus"></i> Add Position
+                </a>
+              </div>
+            </div>
+          </div>
               <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">
                   {% if position_list %}
@@ -54,13 +57,13 @@
                           <button type="button"
                                   onclick="window.location.href='{% url 'home:position-update' pk=position.id %}';"
                                   class="btn bg-gradient-faded-light border-0 w-auto mb-0">
-                            &#9998;
+                            <i class="fas fa-pencil-alt text-dark" aria-hidden="true"></i>
                           </button>
                         </td>
                         <td class="align-middle text-center">
                           <button type="button" class="btn border-0 w-auto mb-0" data-bs-toggle="modal"
                                   data-bs-target="#Modal{{ position.id }}">
-                            X
+                            <i class="far fa-trash-alt" aria-hidden="true"></i>
                           </button>
                           <!-- Modal -->
                           <div class="modal fade" id="Modal{{ position.id }}" tabindex="-1"
@@ -112,8 +115,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
 {% endblock content %}
 

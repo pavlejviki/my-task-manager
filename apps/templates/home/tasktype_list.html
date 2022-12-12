@@ -11,14 +11,18 @@
     <div class="row my-4">
       <div class="col-12">
         <div class="card">
-          <div class="card-header pb-0">
+          <div class="card-header ps-0 pe-0 pb-0">
             <div class="row">
-              <div class="col-lg-6 col-7">
-                <h5>Task Type list
-                  <a href="{% url 'home:task-type-create' %}">
-                    +
-                  </a></h5>
+              <div class="col-6 d-flex align-items-center">
+                <h5 class="ps-3 mb-0">Task Type list</h5>
               </div>
+              <div class="col-6 text-end">
+                <a class="btn btn-outline-primary border-0 mb-0" href="{% url 'home:worker-create' %}">
+                  <i class="fas fa-plus"></i> Add Task Type
+                </a>
+              </div>
+            </div>
+          </div>
               <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">
                   {% if tasktype_list %}
@@ -51,13 +55,13 @@
                           <button type="button"
                                   onclick="window.location.href='{% url 'home:task-type-update' pk=task_type.id %}';"
                                   class="btn bg-gradient-faded-light border-0 w-auto mb-0">
-                            &#9998;
+                            <i class="fas fa-pencil-alt text-dark" aria-hidden="true"></i>
                           </button>
                         </td>
                         <td class="align-middle text-center">
                           <button type="button" class="btn border-0 w-auto mb-0" data-bs-toggle="modal"
                                   data-bs-target="#Modal{{ task_type.id }}">
-                            X
+                            <i class="far fa-trash-alt" aria-hidden="true"></i>
                           </button>
                           <!-- Modal -->
                           <div class="modal fade" id="Modal{{ task_type.id }}" tabindex="-1"
@@ -114,8 +118,7 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
 {% endblock content %}
 <!-- Specific JS goes HERE -->
 {% block javascripts %}{% endblock javascripts %}
