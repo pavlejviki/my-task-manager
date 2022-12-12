@@ -19,12 +19,12 @@
                 <h5 class="ps-3 mb-0">Task list</h5>
               </div>
               <div class="col-6 text-end">
-                <a class="btn btn-outline-primary mb-0" href="{% url 'home:worker-create' %}">
-                  <i class="fas fa-plus"></i> Add Task
+                <a class="btn btn-sm bg-gradient-secondary w-auto px-3 me-5 mb-0" href="{% url 'home:worker-create' %}">
+                  <i class="fas fa-plus"></i><span style="font-size:smaller;"> Add Task</span>
                 </a>
               </div>
               <div class="mb-0">
-                <form action="" method="get" class="d-flex align-items-center flex-nowrap ps-3">
+                <form action="" method="get" class="d-flex align-items-center flex-nowrap  ps-3 input-group-sm">
                   {% csrf_token %}
                   {{ search_form|crispy }}
                   <button class="btn btn-outline-primary border-0 align-items-center p-0 ms-2" type="submit">
@@ -52,8 +52,10 @@
                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
                       Deadline
                     </th>
+                    {% if user.is_staff %}
                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Delete
                     </th>
+                    {% endif %}
                   </tr>
                   </thead>
                   <tbody>
@@ -111,6 +113,7 @@
                     <td class="align-middle text-center text-sm">
                       <span class="mb-0 text-sm">{{ task.deadline }}</span>
                     </td>
+                    {% if user.is_staff %}
                     <td class="align-middle text-center">
                       <button type="button" class="btn border-0 w-auto mb-0"
                               data-bs-toggle="modal"
@@ -154,6 +157,7 @@
                         </div>
                       </div>
                     </div>
+                    {% endif %}
                   {% endfor %}
                   </tr>
                   </tbody>

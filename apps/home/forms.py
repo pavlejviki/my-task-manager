@@ -60,7 +60,8 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task type..."}),
+        widget=forms.TextInput(attrs={"placeholder": "Search by task type...",
+                                      "class": "form-control form-control-sm"}),
     )
 
 
