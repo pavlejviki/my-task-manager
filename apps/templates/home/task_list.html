@@ -53,8 +53,8 @@
                       Deadline
                     </th>
                     {% if user.is_staff %}
-                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Delete
-                    </th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Delete
+                      </th>
                     {% endif %}
                   </tr>
                   </thead>
@@ -114,49 +114,49 @@
                       <span class="mb-0 text-sm">{{ task.deadline }}</span>
                     </td>
                     {% if user.is_staff %}
-                    <td class="align-middle text-center">
-                      <button type="button" class="btn border-0 w-auto mb-0"
-                              data-bs-toggle="modal"
-                              data-bs-target="#Modal{{ task.id }}">
-                        <i class="far fa-trash-alt" aria-hidden="true"></i>
-                      </button>
-                    </td>
-                    <!-- Modal -->
-                    <div class="modal fade" id="Modal{{ task.id }}" tabindex="-1"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">DELETE
-                              TASK</h5>
-                            <button type="button" class="btn-close"
-                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            Are you sure you want to remove
-                            <strong>{{ task.name }}</strong> from the list of
-                            tasks?
-                            {% if not user.is_staff %}
-                              <br>
-                              <span
-                                  class="text-warning text-xs">* Sorry, you are not allowed to delete tasks.</span>
-                            {% endif %}
-                          </div>
-                          <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn bg-gradient-dark"
-                                    data-bs-dismiss="modal">No
-                            </button>
-                            {% if user.is_staff %}
-                              <a href="{% url "home:task-delete" pk=task.id %}"
-                                 class="btn bg-gradient-primary">Yes</a>
-                            {% else %}
-                              <a href="{% url "home:task-delete" pk=task.id %}"
-                                 class="disabled btn bg-gradient-primary">Yes</a>
-                            {% endif %}
+                      <td class="align-middle text-center">
+                        <button type="button" class="btn border-0 w-auto mb-0"
+                                data-bs-toggle="modal"
+                                data-bs-target="#Modal{{ task.id }}">
+                          <i class="far fa-trash-alt" aria-hidden="true"></i>
+                        </button>
+                      </td>
+                      <!-- Modal -->
+                      <div class="modal fade" id="Modal{{ task.id }}" tabindex="-1"
+                           aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">DELETE
+                                TASK</h5>
+                              <button type="button" class="btn-close"
+                                      data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Are you sure you want to remove
+                              <strong>{{ task.name }}</strong> from the list of
+                              tasks?
+                              {% if not user.is_staff %}
+                                <br>
+                                <span
+                                    class="text-warning text-xs">* Sorry, you are not allowed to delete tasks.</span>
+                              {% endif %}
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                              <button type="button" class="btn bg-gradient-dark"
+                                      data-bs-dismiss="modal">No
+                              </button>
+                              {% if user.is_staff %}
+                                <a href="{% url "home:task-delete" pk=task.id %}"
+                                   class="btn bg-gradient-primary">Yes</a>
+                              {% else %}
+                                <a href="{% url "home:task-delete" pk=task.id %}"
+                                   class="disabled btn bg-gradient-primary">Yes</a>
+                              {% endif %}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                     {% endif %}
                   {% endfor %}
                   </tr>

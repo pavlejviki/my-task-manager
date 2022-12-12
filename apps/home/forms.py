@@ -36,7 +36,9 @@ class TaskCreationForm(forms.ModelForm):
     def clean_deadline(self):
         deadline = self.cleaned_data["deadline"]
         if deadline < datetime.date.today():
-            raise forms.ValidationError("The date of the deadline cannot be in the past.")
+            raise forms.ValidationError(
+                "The date of the deadline cannot be in the past."
+            )
         return deadline
 
 
@@ -60,8 +62,12 @@ class TaskSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by task type...",
-                                      "class": "form-control form-control-sm"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by task type...",
+                "class": "form-control form-control-sm",
+            }
+        ),
     )
 
 

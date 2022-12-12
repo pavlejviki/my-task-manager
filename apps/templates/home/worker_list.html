@@ -29,17 +29,17 @@
               {% if worker_list %}
                 <table class="table table-hover align-items-center mb-0">
                 <colgroup>
-                {% if not user.is_staff %}
-                  <col style="width: 30%"/>
-                  <col style="width: 25%"/>
-                  <col style="width: 25%"/>
+                  {% if not user.is_staff %}
+                    <col style="width: 30%"/>
+                    <col style="width: 25%"/>
+                    <col style="width: 25%"/>
                     <col style="width: 20%"/>
                   {% else %}
                     <col style="width: 25%"/>
-                  <col style="width: 20%"/>
-                  <col style="width: 20%"/>
                     <col style="width: 20%"/>
-                  <col style="width: 15%"/>
+                    <col style="width: 20%"/>
+                    <col style="width: 20%"/>
+                    <col style="width: 15%"/>
                   {% endif %}
                 </colgroup>
                 <thead>
@@ -66,7 +66,7 @@
                 <tbody>
                 {% for worker in worker_list %}
                   <tr>
-                    <td class ="ps-4">
+                    <td class="ps-4">
                       <div class="d-flex px-2 py-1">
                         <div>
                           {% if  worker.profile_image %}
