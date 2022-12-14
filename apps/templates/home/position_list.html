@@ -12,102 +12,103 @@
     <div class="row my-4">
       <div class="col-12">
         <div class="card">
-          <div class="card-header pb-0">
+          <div class="card-header ps-0 pe-0 pb-2">
             <div class="row">
-              <div class="col-lg-6 col-7">
-                <h5>Position list
-                  <a href="{% url 'home:position-create' %}">
-                    +
-                  </a>
-                </h5>
+              <div class="col-6 d-flex align-items-center">
+                <h5 class="ps-3 mb-0">Position list</h5>
               </div>
-              <div class="card-body px-0 pt-0 pb-2">
-                <div class="table-responsive p-0">
-                  {% if position_list %}
-                    <table class="table table-hover align-items-center mb-0">
-                    <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                        Name
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                        Edit
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
-                        Delete
-                      </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for position in position_list %}
-                      <tr>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">
-                                {{ position.name }}
-                              </h6>
+              <div class="col-6 text-end">
+                <a class="btn btn-sm bg-gradient-secondary w-auto px-3 me-6 mb-0" href="{% url 'home:worker-create' %}">
+                  <i class="fas fa-plus"></i><span style="font-size:smaller;"> Add Position</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              {% if position_list %}
+                <table class="table table-hover align-items-center mb-0">
+                <thead>
+                <tr>
+                  <th class="ps-4 text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                    Name
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                    Edit
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                    Delete
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for position in position_list %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm ps-2">
+                            {{ position.name }}
+                          </h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <button type="button"
+                              onclick="window.location.href='{% url 'home:position-update' pk=position.id %}';"
+                              class="btn bg-gradient-faded-light border-0 w-auto mb-0">
+                        <i class="fas fa-pencil-alt text-dark" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                    <td class="align-middle text-center">
+                      <button type="button" class="btn border-0 w-auto mb-0" data-bs-toggle="modal"
+                              data-bs-target="#Modal{{ position.id }}">
+                        <i class="far fa-trash-alt" aria-hidden="true"></i>
+                      </button>
+                      <!-- Modal -->
+                      <div class="modal fade" id="Modal{{ position.id }}" tabindex="-1"
+                           aria-labelledby="exampleModalLabel"
+                           aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">DELETE POSITION</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Are you sure you want to remove
+                              <strong>{{ position.name }}</strong> from the list of
+                              positions?
+                              {% if not user.is_staff %}
+                                <br>
+                                <span
+                                    class="text-warning text-xs">* Sorry, you are not allowed to delete positions.</span>
+                              {% endif %}
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                              <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">
+                                No
+                              </button>
+                              {% if user.is_staff %}
+                                <a href="{% url "home:position-delete" pk=position.id %}"
+                                   class="btn bg-gradient-primary">Yes</a>
+                              {% else %}
+                                <a href="{% url "home:position-delete" pk=position.id %}"
+                                   class="disabled btn bg-gradient-primary">Yes</a>
+                              {% endif %}
                             </div>
                           </div>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                          <button type="button"
-                                  onclick="window.location.href='{% url 'home:position-update' pk=position.id %}';"
-                                  class="btn bg-gradient-faded-light border-0 w-auto mb-0">
-                            &#9998;
-                          </button>
-                        </td>
-                        <td class="align-middle text-center">
-                          <button type="button" class="btn border-0 w-auto mb-0" data-bs-toggle="modal"
-                                  data-bs-target="#Modal{{ position.id }}">
-                            X
-                          </button>
-                          <!-- Modal -->
-                          <div class="modal fade" id="Modal{{ position.id }}" tabindex="-1"
-                               aria-labelledby="exampleModalLabel"
-                               aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">DELETE POSITION</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                          aria-label="Close"></button>
-                                </div>
-                                  <div class="modal-body">
-                                    Are you sure you want to remove
-                                    <strong>{{ position.name }}</strong> from the list of
-                                    positions?
-                                  {% if not user.is_staff %}
-                                    <br>
-                                    <span
-                                        class="text-warning text-xs">* Sorry, you are not allowed to delete positions.</span>
-                                  {% endif %}
-                                  </div>
-                                  <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">
-                                      No
-                                    </button>
-                                    {% if user.is_staff %}
-                                    <a href="{% url "home:position-delete" pk=position.id %}"
-                                       class="btn bg-gradient-primary">Yes</a>
-                                    {% else %}
-                                    <a href="{% url "home:position-delete" pk=position.id %}"
-                                       class="disabled btn bg-gradient-primary">Yes</a>
-                                    {% endif %}
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                    </tbody>
-                  {% else %}
-                    <p class="p-3">There are no positions yet.</p>
-                  {% endif %}
-                  </table>
-                </div>
-              </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              {% else %}
+                <p class="p-3">There are no positions yet.</p>
+              {% endif %}
+              </table>
             </div>
           </div>
         </div>
